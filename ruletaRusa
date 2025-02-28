@@ -1,0 +1,23 @@
+import random
+
+def ruleta_rusa():
+    jugadores = int(input("Ingrese el número de jugadores: "))
+    bala = random.randint(1, 6) 
+    tambor = [False] * 6
+    tambor[bala - 1] = True 
+    random.shuffle(tambor)  
+    turno = 0
+    while True:
+        input(f"Turno del jugador {turno + 1}. Presione Enter para disparar...")
+        if tambor.pop(0):  # Disparo
+            print(f"¡Jugador {turno + 1} ha sido eliminado! 💥")
+            break
+        else:
+            print("Clic... Nada ha pasado.")
+        turno = (turno + 1) % jugadores  
+        if len(tambor) == 0:
+            print("El tambor se vació sin que nadie salga lastimado. ¡Todos ganan!")
+            break
+
+if __name__ == "__main__":
+    ruleta_rusa()
